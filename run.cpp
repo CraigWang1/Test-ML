@@ -1,8 +1,8 @@
 /*
  * Run model on video to test fps 
  */
-#include "/tmp/cppflow/include/Model.h"  
-#include "/tmp/cppflow/include/Tensor.h"
+#include "cppflow/include/Model.h"  
+#include "cppflow/include/Tensor.h"
 #include "utils.hpp"   
 
 int main() 
