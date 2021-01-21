@@ -18,3 +18,11 @@ if __name__ == "__main__":
     classes=["gate"],
     fps=25
   )
+
+  # Inference on pictures just for fun.
+  # utils.inference_pic(
+  #   model_path="model.pb",
+  #   phi=0,
+  #   score_threshold=.3,
+  #   classes=["gate"]
+  # )

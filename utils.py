@@ -141,7 +141,8 @@ def inference_pic(model_path, phi=0, weighted_bifpn=False, classes=None, score_t
     image = image[:, :, ::-1]   #goes from bgr to rgb
     h, w = image.shape[:2]
 
-    image, scale = preprocess_image(image, image_size=image_size)
+    image, scale = resize_image(image, image_size)
+    image = preprocess_image(image, image_size)
     # run network
     start = time.time()
     boxes, scores, labels = sess.run([output_boxes, output_scores, output_labels], {tensor_input:[image]})
