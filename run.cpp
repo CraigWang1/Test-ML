@@ -57,7 +57,7 @@ int main()
         }
         //std::cout << counter << std::endl;           //display frame number
         resize(img, image_size);              //resize img for faster enhance and to input model
-        underwaterEnhance(img);                      //underwater phoebe enhance for visualization
+        // underwaterEnhance(img);                      //underwater phoebe enhance for visualization
         cv::cvtColor(img, inp, CV_BGR2RGB);          //convert from bgr img to rgb (model trained on rgb images) and copy to input img
         preprocess(inp, img_data, image_size);  //process image for input
 
