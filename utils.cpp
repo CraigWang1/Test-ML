@@ -100,7 +100,7 @@ void preprocess(cv::Mat &image, std::vector<float> &img_data, int image_size)
 
 	// create image_size x image_size input img
 	cv::Mat temp;                                                              // use temp because we still need to log original img intact                                     
-	cv::cvtColor(image, temp, CV_BGR2RGB);                                     // copy and convert to rgb (model is trained on rgb)
+	cv::cvtColor(image, temp, cv::COLOR_BGR2RGB);                                     // copy and convert to rgb (model is trained on rgb)
 	temp.convertTo(temp, CV_32FC3);                                            // converts to float matrix so we can divide later
 	cv::Mat inp(image_size, image_size, CV_32FC3, cv::Scalar(128, 128, 128));  // makes input mat with shape (image_size, image_size, 3) filled with 128s
 	temp.copyTo(inp(cv::Rect(0, 0, temp.cols, temp.rows)));                    // pastes the image on top left corner (point 0, 0) of empty cv mat

@@ -26,8 +26,8 @@ int main()
     cv::VideoCapture cap("video.mp4");
 
     // Default resolution of the frame is obtained.The default resolution is system dependent. 
-    int frame_width = cap.get(CV_CAP_PROP_FRAME_WIDTH); 
-    int frame_height = cap.get(CV_CAP_PROP_FRAME_HEIGHT); 
+    // int frame_width = cap.get(CV_CAP_PROP_FRAME_WIDTH); 
+    // int frame_height = cap.get(CV_CAP_PROP_FRAME_HEIGHT); 
     int fps = 25;
 
     // initialize video writer (for output)
@@ -58,7 +58,7 @@ int main()
         //std::cout << counter << std::endl;           //display frame number
         resize(img, image_size);              //resize img for faster enhance and to input model
         // underwaterEnhance(img);                      //underwater phoebe enhance for visualization
-        cv::cvtColor(img, inp, CV_BGR2RGB);          //convert from bgr img to rgb (model trained on rgb images) and copy to input img
+        cv::cvtColor(img, inp, cv::COLOR_BGR2RGB);          //convert from bgr img to rgb (model trained on rgb images) and copy to input img
         preprocess(inp, img_data, image_size);  //process image for input
 
         // Put data in tensor.
