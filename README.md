@@ -8,7 +8,7 @@
 
 ## Test Model (C++)
 
-	g++ run.cpp utils.cpp /tmp/cppflow/src/Model.cpp /tmp/cppflow/src/Tensor.cpp -o output -ltensorflow `pkg-config opencv --cflags --libs` && ./output
+	g++ run.cpp utils.cpp cppflow/src/Model.cpp cppflow/src/Tensor.cpp -o output -ltensorflow `pkg-config opencv --cflags --libs` && ./output
 
 ## Test Model (Python 3)
 
