@@ -2,7 +2,7 @@
 
 # Install OpenCV
 sudo apt update
-sudo apt-get install python3-opencv
+sudo apt-get install libopencv-dev python3-opencv
 
 # Install Tensorflow for C
 wget https://storage.googleapis.com/tensorflow/libtensorflow/libtensorflow-gpu-linux-x86_64-1.15.0.tar.gz 
