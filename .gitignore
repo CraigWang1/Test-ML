@@ -1,5 +1,6 @@
 output
-result.mp4
+original.png
+result.png
 libtensorflow-gpu-linux-x86_64-1.15.0.tar.gz* 
 cppflow/
 __pycache__/

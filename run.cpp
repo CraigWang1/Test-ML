@@ -47,6 +47,8 @@ int main()
     {
         auto start = std::chrono::high_resolution_clock::now();
 
+        cv::imwrite("original.png", og_img);
+
         cv::Mat img = og_img;
         cv::Mat inp;
         std::vector<float> img_data;
@@ -104,7 +106,7 @@ int main()
                 break;        //if it's lower than the thres then we know it's the last highest one,
             }                 //so we can afford to break out because all the other outputs will be below the threshold
         }
-        cv::imwrite("result.jpg", img);
+        cv::imwrite("result.png", img);
         // out.write(img);
         // calculate fps
         auto stop = std::chrono::high_resolution_clock::now();
