@@ -23,16 +23,19 @@ int main()
     auto out_scores = new Tensor(model, "filtered_detections/map/TensorArrayStack_1/TensorArrayGatherV3");
     auto out_labels = new Tensor(model, "filtered_detections/map/TensorArrayStack_2/TensorArrayGatherV3"); 
 
-    cv::VideoCapture cap("video.mp4");
+    // infinitely fast stream of images for model to inference on
+    cv::Mat og_img = cv::imread("test.png");
+
+    // cv::VideoCapture cap("video.mp4");
 
     // Default resolution of the frame is obtained.The default resolution is system dependent. 
     // int frame_width = cap.get(CV_CAP_PROP_FRAME_WIDTH); 
     // int frame_height = cap.get(CV_CAP_PROP_FRAME_HEIGHT); 
-    int fps = 25;
+    // int fps = 25;
 
     // initialize video writer (for output)
-    cv::VideoWriter out("result.mp4", cv::VideoWriter::fourcc('H','2','6','4'),
-                           fps, cv::Size(512, 439));  
+    // cv::VideoWriter out("result.mp4", cv::VideoWriter::fourcc('H','2','6','4'),
+    //                        fps, cv::Size(512, 439));  
     /*
     cv::VideoWriter out("/content/result.mp4", cv::VideoWriter::fourcc('H','2','6','4'),
                            fps, cv::Size(frame_width, frame_height));  
@@ -40,24 +43,24 @@ int main()
 
     int counter = 1;  //count which frame you're on
     // loop through the frames
-    for (;;) 
+    for (int i = 0; i < 1000; i++) 
     {
         auto start = std::chrono::high_resolution_clock::now();
-      
-        cv::Mat img;
+
+        cv::Mat img = og_img;
         cv::Mat inp;
         std::vector<float> img_data;
 
         // process input image  
-        cap >> img;
-        if (img.empty()) 
-        {
-            std::cerr << "ERROR! blank frame grabbed\n";
-            break;
-        }
+        // cap >> img;
+        // if (img.empty()) 
+        // {
+        //     std::cerr << "ERROR! blank frame grabbed\n";
+        //     break;
+        // }
         //std::cout << counter << std::endl;           //display frame number
         resize(img, image_size);              //resize img for faster enhance and to input model
-        // underwaterEnhance(img);                      //underwater phoebe enhance for visualization
+        underwaterEnhance(img);                      //underwater phoebe enhance for visualization
         cv::cvtColor(img, inp, cv::COLOR_BGR2RGB);          //convert from bgr img to rgb (model trained on rgb images) and copy to input img
         preprocess(inp, img_data, image_size);  //process image for input
 
@@ -101,7 +104,8 @@ int main()
                 break;        //if it's lower than the thres then we know it's the last highest one,
             }                 //so we can afford to break out because all the other outputs will be below the threshold
         }
-        out.write(img);
+        cv::imwrite("result.jpg", img);
+        // out.write(img);
         // calculate fps
         auto stop = std::chrono::high_resolution_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::microseconds>(stop-start);
@@ -111,8 +115,8 @@ int main()
 
         counter ++;
     }
-    cap.release();
-    out.release();
+    // cap.release();
+    // out.release();
 
     return 0;
 }
